@@ -1,0 +1,33 @@
+
+MAMP 中自带的PHP无法加载其他的扩展，所以要自己重新下载
+
+1.下载php文件 http://php.net/downloads.php 找到对应的php文件下载
+
+2.在当前 MAMP/bin/php/phpx.x.x 新建一个include 路径为 MAMP/bin/php/phpx.x.x/include
+
+3.把之前下载的php文件解压到 MAMP/bin/php/phpx.x.x/include中 修改名字为php
+
+4.命令行：
+	cd MAMP/Applications/bin/phpx.x.x/include/php
+	./configure
+
+5.下载redis扩展 
+	在 MAMP/Applications/bin/phpx.x.x/include/php路径下执行以下命令行：
+	git clone https://github.com/nicolasff/phpredis.git
+	cd phpredis
+	./../../../../phpx.x.x/bin/phpize
+	./configure
+	./configure --with-php-config=/Applications/MAMP/bin/php/phpx.x.x/bin/php-config
+	sudo make
+	sudo cp -p modules/redis.so /Applications/MAMP/bin/php/phpx.x.x/lib/php/extensions/no-debug-non-zts-xxxxxxxx/
+
+6. 	MAMP --> File --> Edit Template --> PHP --> PHP x.x.x php.ini
+	查找 	extension_dir= 
+	修改	 	extension_dir="/Applications/MAMP/bin/php/phpx.x.x/lib/php/extensions/no-debug-non-zts-xxxxxxxx/"
+	查找  	extension=    
+	添加  	extension=redis.so
+	保存，重启MAMP
+
+7.验证
+	在 Applications/MAMP/htdocs/index.php  php代码中 添加 phpinfo();
+	搜索redis 显示对应版本号则表示redis扩展加载成功
