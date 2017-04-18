@@ -23,7 +23,7 @@ MAMP 中自带的PHP无法加载其他的扩展，所以要自己重新下载
 
 6. 	MAMP --> File --> Edit Template --> PHP --> PHP x.x.x php.ini
 	查找 	extension_dir= 
-	修改	 	extension_dir="/Applications/MAMP/bin/php/phpx.x.x/lib/php/extensions/no-debug-non-zts-xxxxxxxx/"
+	修改	extension_dir="/Applications/MAMP/bin/php/phpx.x.x/lib/php/extensions/no-debug-non-zts-xxxxxxxx/"
 	查找  	extension=    
 	添加  	extension=redis.so
 	保存，重启MAMP
